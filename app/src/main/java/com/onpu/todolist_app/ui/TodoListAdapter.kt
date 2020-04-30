@@ -30,11 +30,11 @@ class TodoListAdapter(todoEvents: TodoEvents) : RecyclerView.Adapter<TodoListAda
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(todo: TodoRecord, listener: TodoEvents) {
-            itemView.tv_item_title.text = todo.title
-            itemView.tv_item_content.text = todo.content
-            itemView.iv_item_delete.setOnClickListener {
-                listener.onDeleteClicked(todo)
-            }
+            itemView.card_title_tv.text = todo.title
+            itemView.card_content_tv.text = todo.content
+//            itemView.iv_item_delete.setOnClickListener {
+//                listener.onDeleteClicked(todo)
+//            }
             itemView.setOnClickListener {
                 listener.onViewClicked(todo)
             }
@@ -48,7 +48,7 @@ class TodoListAdapter(todoEvents: TodoEvents) : RecyclerView.Adapter<TodoListAda
     }
 
     interface TodoEvents {
-        fun onDeleteClicked(todo: TodoRecord)
+        fun onDeleteClicked(todo: TodoRecord, position: Int)
         fun onViewClicked(todo: TodoRecord)
     }
 
@@ -83,5 +83,10 @@ class TodoListAdapter(todoEvents: TodoEvents) : RecyclerView.Adapter<TodoListAda
 
         }
     }
+
+    fun deleteItem(position: Int) {
+        listener.onDeleteClicked(todos[position], position)
+    }
+
 
 }

@@ -15,4 +15,6 @@
     <string name="title_activity_todo_list">TodoListActivity</string>
     <string name="noTodos">You have no todos yet</string>
     <string name="title_activity_test">test</string>
+    <string name="deleted">Deleted</string>
+    <string name="undo">Undo</string>
 </resources>

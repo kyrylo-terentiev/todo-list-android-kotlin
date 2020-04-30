@@ -7,17 +7,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.SearchView
+import android.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.onpu.todolist_app.R
 import com.onpu.todolist_app.data.TodoRecord
-import androidx.lifecycle.ViewModelProviders
 import com.onpu.todolist_app.utils.Constants
-import android.widget.SearchView.OnQueryTextListener;
-import android.widget.SearchView
 import kotlinx.android.synthetic.main.activity_todo_list.*
 import kotlinx.android.synthetic.main.content_todo_list.*
+
 
 class TodoListActivity : AppCompatActivity(), TodoListAdapter.TodoEvents {
 
@@ -34,6 +37,7 @@ class TodoListActivity : AppCompatActivity(), TodoListAdapter.TodoEvents {
         rv_todo_list.layoutManager = LinearLayoutManager(this)
         todoAdapter = TodoListAdapter(this)
         rv_todo_list.adapter = todoAdapter
+        ItemTouchHelper(SwipeToDeleteCallback(todoAdapter, applicationContext)).attachToRecyclerView(rv_todo_list)
 
         todoViewModel = ViewModelProviders.of(this).get(TodoViewModel::class.java)
         todoViewModel.getAllTodos().observe(this, Observer {
@@ -47,8 +51,18 @@ class TodoListActivity : AppCompatActivity(), TodoListAdapter.TodoEvents {
         }
     }
 
-    override fun onDeleteClicked(todo: TodoRecord) {
+    override fun onDeleteClicked(todo: TodoRecord, position: Int) {
+        val recentlyDeletedTodo = todo
+        val recentlyDeletedTodoPosition = position
         todoViewModel.deleteTodo(todo)
+        val snackbar = Snackbar.make(container, R.string.deleted, Snackbar.LENGTH_LONG)
+        snackbar.setAction(R.string.undo) { v -> undoDelete(todo, position) }
+        snackbar.show()
+    }
+
+    private fun undoDelete(todo: TodoRecord, position: Int) {
+        todoViewModel.saveTodo(todo)
+        todoAdapter.notifyItemInserted(position)
     }
 
     override fun onViewClicked(todo: TodoRecord) {
