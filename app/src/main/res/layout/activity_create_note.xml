@@ -17,6 +17,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_create_todo" />
+    <include layout="@layout/content_create_note" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

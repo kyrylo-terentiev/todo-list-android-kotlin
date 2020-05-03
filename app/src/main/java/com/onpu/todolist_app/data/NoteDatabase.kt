@@ -5,21 +5,21 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [TodoRecord::class], version = 1, exportSchema = false)
-abstract class TodoDatabase : RoomDatabase() {
+@Database(entities = [NoteRecord::class], version = 4, exportSchema = false)
+abstract class NoteDatabase : RoomDatabase() {
 
-    abstract fun todoDao(): TodoDao
+    abstract fun todoDao(): NoteDao
 
     companion object {
-        private var INSTANCE: TodoDatabase? = null
+        private var INSTANCE: NoteDatabase? = null
 
-        fun getInstance(context: Context): TodoDatabase? {
+        fun getInstance(context: Context): NoteDatabase? {
             if (INSTANCE == null) {
-                synchronized(TodoDatabase::class) {
+                synchronized(NoteDatabase::class) {
                     INSTANCE = Room.databaseBuilder(
                         context,
-                        TodoDatabase::class.java,
-                        "todo_db"
+                        NoteDatabase::class.java,
+                        "note_db"
                     ).build()
                 }
             }

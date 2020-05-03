@@ -7,49 +7,48 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.onpu.todolist_app.R
-import com.onpu.todolist_app.data.TodoRecord
-import kotlinx.android.synthetic.main.todo_item.view.*
+import com.onpu.todolist_app.data.NoteRecord
+import kotlinx.android.synthetic.main.note_item.view.*
 
-class TodoListAdapter(todoEvents: TodoEvents) : RecyclerView.Adapter<TodoListAdapter.ViewHolder>(),
+class NoteListAdapter(todoEvents: TodoEvents) : RecyclerView.Adapter<NoteListAdapter.ViewHolder>(),
     Filterable {
 
-    private var todos: List<TodoRecord> = arrayListOf()
-    private var filteredTodoList: List<TodoRecord> = arrayListOf()
+    private var notes: List<NoteRecord> = arrayListOf()
+    private var filteredNoteList: List<NoteRecord> = arrayListOf()
     private val listener: TodoEvents = todoEvents
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.todo_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.note_item, parent, false)
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int = filteredTodoList.size
+    override fun getItemCount(): Int = filteredNoteList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(filteredTodoList[position], listener)
+        holder.bind(filteredNoteList[position], listener)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(todo: TodoRecord, listener: TodoEvents) {
-            itemView.card_title_tv.text = todo.title
-            itemView.card_content_tv.text = todo.content
-//            itemView.iv_item_delete.setOnClickListener {
-//                listener.onDeleteClicked(todo)
-//            }
+        fun bind(note: NoteRecord, listener: TodoEvents) {
+            itemView.card_title_tv.text = note.title
+            itemView.card_content_tv.text = note.content
             itemView.setOnClickListener {
-                listener.onViewClicked(todo)
+                listener.onViewClicked(note)
             }
         }
     }
 
-    fun setAllTodos(todos: List<TodoRecord>) {
-        this.todos = todos
-        this.filteredTodoList = todos
+    fun setAllTodos(notes: List<NoteRecord>) {
+        this.notes = notes
+
+        this.filteredNoteList = notes
         notifyDataSetChanged()
     }
 
     interface TodoEvents {
-        fun onDeleteClicked(todo: TodoRecord, position: Int)
-        fun onViewClicked(todo: TodoRecord)
+        fun onItemDeleted(note: NoteRecord, position: Int)
+        fun onViewClicked(note: NoteRecord)
+        fun onItemUnarchived(note: NoteRecord, position: Int)
     }
 
 
@@ -57,11 +56,11 @@ class TodoListAdapter(todoEvents: TodoEvents) : RecyclerView.Adapter<TodoListAda
         return object : Filter() {
             override fun performFiltering(p0: CharSequence?): FilterResults {
                 val charString = p0.toString()
-                filteredTodoList = if (charString.isEmpty()) {
-                    todos
+                filteredNoteList = if (charString.isEmpty()) {
+                    notes
                 } else {
-                    val filteredList = arrayListOf<TodoRecord>()
-                    for (row in todos) {
+                    val filteredList = arrayListOf<NoteRecord>()
+                    for (row in notes) {
                         if (row.title!!.toLowerCase().contains(charString.toLowerCase())
                             || row.content!!.contains(charString.toLowerCase())
                         ) {
@@ -72,20 +71,25 @@ class TodoListAdapter(todoEvents: TodoEvents) : RecyclerView.Adapter<TodoListAda
                 }
 
                 val filterResults = FilterResults()
-                filterResults.values = filteredTodoList
+                filterResults.values = filteredNoteList
                 return filterResults
             }
 
             override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
-                filteredTodoList = p1?.values as List<TodoRecord>
+                filteredNoteList = p1?.values as List<NoteRecord>
                 notifyDataSetChanged()
             }
 
         }
     }
 
+
     fun deleteItem(position: Int) {
-        listener.onDeleteClicked(todos[position], position)
+        listener.onItemDeleted(notes[position], position)
+    }
+
+    fun restoreItem(position: Int) {
+        listener.onItemUnarchived(notes[position], position)
     }
 
 

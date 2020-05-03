@@ -1,20 +1,25 @@
 <resources>
-    <string name="app_name">Todo List</string>
+    <string name="app_name">Notes</string>
     <string name="delete">Delete</string>
     <string name="save">Save</string>
     <string name="enter_title">Enter Title</string>
     <string name="enter_content">Enter Content</string>
     <string name="pleaseEnterTitle">Please enter title</string>
     <string name="pleaseEnterContent">Please enter content</string>
-    <string name="viewOrEditTodo">View/Edit Todo</string>
-    <string name="createTodo">Create Todo</string>
+    <string name="editNote">Edit Note</string>
+    <string name="createNote">Create Note</string>
     <string name="title">Title</string>
     <string name="content">Content</string>
     <string name="search">Search</string>
     <string name="search_here">Search here</string>
-    <string name="title_activity_todo_list">TodoListActivity</string>
-    <string name="noTodos">You have no todos yet</string>
+    <string name="title_activity_note_list">NoteListActivity</string>
+    <string name="noNotes">You have no notes yet</string>
     <string name="title_activity_test">test</string>
+    <string name="archived">Archived</string>
     <string name="deleted">Deleted</string>
+    <string name="unarchived">Unarchived</string>
     <string name="undo">Undo</string>
+    <string name="archive">Archive</string>
+    <string name="title_activity_archive">Archive</string>
+
 </resources>
