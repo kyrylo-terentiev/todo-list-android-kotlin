@@ -1,4 +1,4 @@
-package com.onpu.todolist_app.data
+package com.terentiev.notes.data
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -18,8 +18,7 @@ data class NoteRecord(
         parcel.readString(),
         parcel.readString(),
         isArchived = parcel.readInt()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeValue(id)

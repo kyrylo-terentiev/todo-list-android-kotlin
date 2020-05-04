@@ -1,4 +1,4 @@
-package com.onpu.todolist_app.ui
+package com.terentiev.notes.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -6,15 +6,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.onpu.todolist_app.R
-import com.onpu.todolist_app.data.NoteRecord
-import com.onpu.todolist_app.utils.Constants
+import com.terentiev.notes.R
+import com.terentiev.notes.data.NoteRecord
+import com.terentiev.notes.utils.Constants
 import kotlinx.android.synthetic.main.activity_create_note.*
 import kotlinx.android.synthetic.main.content_create_note.*
 
 class CreateNoteActivity : AppCompatActivity() {
 
-    var noteRecord: NoteRecord? = null
+    private var noteRecord: NoteRecord? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

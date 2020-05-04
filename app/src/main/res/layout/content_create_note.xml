@@ -27,7 +27,7 @@
             android:gravity="start"
             android:hint="@string/enter_title"
             android:inputType="textShortMessage|textCapSentences"
-            android:textColorLink="@color/colorAccent" />
+            android:textColorLink="@color/colorAccentDark" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,7 +52,7 @@
             android:gravity="top"
             android:hint="@string/enter_content"
             android:inputType="textShortMessage|textLongMessage|textMultiLine|textCapSentences"
-            android:textColorLink="@color/colorAccent" />
+            android:textColorLink="@color/colorAccentDark" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

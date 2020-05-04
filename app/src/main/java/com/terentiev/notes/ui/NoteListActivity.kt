@@ -1,4 +1,4 @@
-package com.onpu.todolist_app.ui
+package com.terentiev.notes.ui
 
 import android.app.Activity
 import android.app.SearchManager
@@ -15,10 +15,10 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.onpu.todolist_app.R
-import com.onpu.todolist_app.data.NoteRecord
-import com.onpu.todolist_app.utils.Constants
-import com.onpu.todolist_app.utils.ItemSwipeCallback
+import com.terentiev.notes.R
+import com.terentiev.notes.data.NoteRecord
+import com.terentiev.notes.utils.Constants
+import com.terentiev.notes.utils.ItemSwipeCallback
 import kotlinx.android.synthetic.main.activity_note_list.*
 import kotlinx.android.synthetic.main.content_note_list.*
 
@@ -143,6 +143,4 @@ class NoteListActivity : AppCompatActivity(), NoteListAdapter.TodoEvents {
             return
         }
     }
-
-
 }

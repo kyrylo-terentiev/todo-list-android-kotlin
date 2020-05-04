@@ -33,6 +33,7 @@
         android:adjustViewBounds="false"
         android:foregroundGravity="center"
         android:tint="#FFFFFF"
+        app:backgroundTint="@color/colorAccent"
         app:srcCompat="@drawable/ic_note_add_white_24dp"
         app:useCompatPadding="true" />
 

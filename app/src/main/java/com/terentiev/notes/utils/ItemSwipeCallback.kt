@@ -1,16 +1,15 @@
-package com.onpu.todolist_app.utils
+package com.terentiev.notes.utils
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.onpu.todolist_app.R
-import com.onpu.todolist_app.ui.NoteListAdapter
+import com.terentiev.notes.R
+import com.terentiev.notes.ui.NoteListAdapter
 
 class ItemSwipeCallback(
     private var adapter: NoteListAdapter,
@@ -57,8 +56,7 @@ class ItemSwipeCallback(
     ) {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
         val itemView: View = viewHolder.itemView
-        val backgroundCornerOffset = 30 //so background is behind the rounded corners of itemView
-
+        val backgroundCornerOffset = 0 //so background is behind the rounded corners of itemView
 
         when (isArchive) {
             false -> {
@@ -98,7 +96,6 @@ class ItemSwipeCallback(
                 background.draw(c)
                 icon.draw(c)
             }
-
             true -> {
                 when {
                     dX > 0 -> { // Swiping to the right (unarchive)
@@ -119,7 +116,7 @@ class ItemSwipeCallback(
                     }
                     dX < 0 -> { // Swiping to the left (delete)
                         icon = ContextCompat.getDrawable(context, R.drawable.ic_delete_sweep_white_36dp)!!
-                        background = ColorDrawable(Color.RED)
+                        background = ColorDrawable(ContextCompat.getColor(context, R.color.colorDanger))
                         val iconMargin: Int = icon.intrinsicWidth / 2;
                         val iconTop: Int =
                             itemView.top + (itemView.height - icon.intrinsicHeight) / 2
@@ -136,11 +133,9 @@ class ItemSwipeCallback(
                         background.setBounds(0, 0, 0, 0)
                     }
                 }
-
                 background.draw(c)
                 icon.draw(c)
             }
         }
-
     }
 }

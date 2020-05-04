@@ -1,4 +1,4 @@
-package com.onpu.todolist_app
+package com.terentiev.notes
 
 import org.junit.Test
 

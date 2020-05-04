@@ -1,4 +1,4 @@
-package com.onpu.todolist_app.data
+package com.terentiev.notes.data
 
 import android.content.Context
 import androidx.room.Database
@@ -23,7 +23,6 @@ abstract class NoteDatabase : RoomDatabase() {
                     ).build()
                 }
             }
-
             return INSTANCE
         }
     }

@@ -1,4 +1,4 @@
-package com.onpu.todolist_app.data
+package com.terentiev.notes.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

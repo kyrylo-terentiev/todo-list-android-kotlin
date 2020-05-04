@@ -1,4 +1,4 @@
-package com.onpu.todolist_app.data
+package com.terentiev.notes.data
 
 import android.app.Application
 import android.util.Log.d
@@ -21,33 +21,33 @@ class NoteRepository(application: Application) {
     }
 
     fun saveNote(note: NoteRecord) = runBlocking {
-        d(TAG,":saveNote()")
+        d(TAG, ":saveNote()")
         this.launch(Dispatchers.IO) {
             noteDao.saveNote(note)
         }
     }
 
     fun updateNote(note: NoteRecord) = runBlocking {
-        d(TAG,":updateNote()")
+        d(TAG, ":updateNote()")
         this.launch(Dispatchers.IO) {
             noteDao.updateNote(note)
         }
     }
 
     fun deleteNote(note: NoteRecord) = runBlocking {
-        d(TAG,":deleteNote()")
+        d(TAG, ":deleteNote()")
         this.launch(Dispatchers.IO) {
             noteDao.deleteNote(note)
         }
     }
 
     fun getActiveNotes(): LiveData<List<NoteRecord>> {
-        d(TAG,":getActiveNotes()")
+        d(TAG, ":getActiveNotes()")
         return activeNotes
     }
 
     fun getArchivedNotes(): LiveData<List<NoteRecord>> {
-        d(TAG,":getArchivedNotes()")
+        d(TAG, ":getArchivedNotes()")
         return archivedNotes
     }
 

@@ -1,4 +1,4 @@
-package com.onpu.todolist_app.ui
+package com.terentiev.notes.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
-import com.onpu.todolist_app.R
-import com.onpu.todolist_app.data.NoteRecord
+import com.terentiev.notes.R
+import com.terentiev.notes.data.NoteRecord
 import kotlinx.android.synthetic.main.note_item.view.*
 
 class NoteListAdapter(todoEvents: TodoEvents) : RecyclerView.Adapter<NoteListAdapter.ViewHolder>(),
@@ -51,7 +51,6 @@ class NoteListAdapter(todoEvents: TodoEvents) : RecyclerView.Adapter<NoteListAda
         fun onItemUnarchived(note: NoteRecord, position: Int)
     }
 
-
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(p0: CharSequence?): FilterResults {
@@ -62,7 +61,7 @@ class NoteListAdapter(todoEvents: TodoEvents) : RecyclerView.Adapter<NoteListAda
                     val filteredList = arrayListOf<NoteRecord>()
                     for (row in notes) {
                         if (row.title!!.toLowerCase().contains(charString.toLowerCase())
-                            || row.content!!.contains(charString.toLowerCase())
+                            || row.content!!.toLowerCase().contains(charString.toLowerCase())
                         ) {
                             filteredList.add(row)
                         }
@@ -83,7 +82,6 @@ class NoteListAdapter(todoEvents: TodoEvents) : RecyclerView.Adapter<NoteListAda
         }
     }
 
-
     fun deleteItem(position: Int) {
         listener.onItemDeleted(notes[position], position)
     }
@@ -91,6 +89,4 @@ class NoteListAdapter(todoEvents: TodoEvents) : RecyclerView.Adapter<NoteListAda
     fun restoreItem(position: Int) {
         listener.onItemUnarchived(notes[position], position)
     }
-
-
 }

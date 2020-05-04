@@ -1,4 +1,4 @@
-package com.onpu.todolist_app.ui
+package com.terentiev.notes.ui
 
 import android.app.SearchManager
 import android.content.Context
@@ -12,9 +12,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.onpu.todolist_app.R
-import com.onpu.todolist_app.data.NoteRecord
-import com.onpu.todolist_app.utils.ItemSwipeCallback
+import com.terentiev.notes.R
+import com.terentiev.notes.data.NoteRecord
+import com.terentiev.notes.utils.ItemSwipeCallback
 
 import kotlinx.android.synthetic.main.activity_archive.*
 import kotlinx.android.synthetic.main.content_archive.*
@@ -90,7 +90,6 @@ class ArchiveActivity : AppCompatActivity(), NoteListAdapter.TodoEvents {
                 noteAdapter.filter.filter(query)
                 return false
             }
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 noteAdapter.filter.filter(newText)
                 return false

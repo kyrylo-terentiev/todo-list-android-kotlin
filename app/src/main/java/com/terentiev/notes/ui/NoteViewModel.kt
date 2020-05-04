@@ -1,10 +1,10 @@
-package com.onpu.todolist_app.ui
+package com.terentiev.notes.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.onpu.todolist_app.data.NoteRecord
-import com.onpu.todolist_app.data.NoteRepository
+import com.terentiev.notes.data.NoteRecord
+import com.terentiev.notes.data.NoteRepository
 
 class NoteViewModel(application: Application) : AndroidViewModel(application) {
 
